@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
 
 from fastapi import FastAPI, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
 
 from app import storage
 from app.business_rules import validate_status_transition
@@ -10,6 +11,13 @@ app = FastAPI(
     title="Task Tracker API",
     description="A minimal learning-project REST API for tracking tasks.",
     version="0.1.0",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5500", "http://localhost:5173", "http://127..0.0.1:5500", "null"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
