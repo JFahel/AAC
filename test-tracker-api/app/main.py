@@ -32,7 +32,7 @@ def create_task(payload: TaskCreate) -> TaskResponse:
     return storage.add_task(payload)
 
 
-@app.get("/tasks/{task_id}", response_model=TaskResponse, tags=["tasks"])
+@app.get("/tasks/{task_id:path}", response_model=TaskResponse, tags=["tasks"])
 def get_task(task_id: str) -> TaskResponse:
     task = storage.get_task_by_id(task_id)
     if task is not None:
